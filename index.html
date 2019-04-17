@@ -87,15 +87,13 @@
     var instance = M.Chips.getInstance($(".chips"));
 
     var xhr = new XMLHttpRequest();
-    var url = "https://whereispublo.com:9443/customTags/xd";
+    var url = "https://whereispublo.com:9443/tagTree/createTagsIfNotExists";
     xhr.open("POST", url, true);
-    //xhr.setRequestHeader("Content-Type", "application/json");
-    //xhr.setRequestHeader("Access-Control-Request-Headers", "xs");
-    xhr.onreadystatechange = function () {
-        alert("Dzięki!");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function (e) {
         location.reload();
     };
-    var data = JSON.stringify(instance.chipsData.map(function(e) {return e.tag;}));
+    var data = JSON.stringify({"tags": instance.chipsData.map(function(e) {return e.tag;})});
     xhr.send(data);
   });
 
